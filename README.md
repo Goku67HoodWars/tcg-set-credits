@@ -38,27 +38,25 @@ A Standard pack costs 2,500 credits, so `credits = packs × 2500`
 
 ## Run without cloning
 
-Because the repo is private, fetch it with the authenticated GitHub CLI
-([`gh auth login`](https://cli.github.com/) once) and run it straight from memory —
-nothing is saved to disk:
+Fetch it straight from GitHub and run it from memory — nothing saved to disk:
 
 ```powershell
 # interactive
-& ([scriptblock]::Create((gh api repos/Goku67HoodWars/tcg-set-credits/contents/tcg-set-credits.ps1 -H "Accept: application/vnd.github.raw" | Out-String)))
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/Goku67HoodWars/tcg-set-credits/main/tcg-set-credits.ps1)))
 
 # direct
-& ([scriptblock]::Create((gh api repos/Goku67HoodWars/tcg-set-credits/contents/tcg-set-credits.ps1 -H "Accept: application/vnd.github.raw" | Out-String))) -Credits 5692500 -Yes
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/Goku67HoodWars/tcg-set-credits/main/tcg-set-credits.ps1))) -Credits 5692500 -Yes
 ```
 
 It always pulls the current `main`, so pushing an update makes the next run use it
-automatically. (Plain `iex` won't work here because the script has a `param()` block —
+automatically. (Plain `iex` won't work because the script has a `param()` block —
 `[scriptblock]::Create` handles that.)
 
 Optional one-word shortcut — add to your PowerShell profile (`notepad $PROFILE`):
 
 ```powershell
 function Set-TcgCredits {
-  & ([scriptblock]::Create((gh api repos/Goku67HoodWars/tcg-set-credits/contents/tcg-set-credits.ps1 -H "Accept: application/vnd.github.raw" | Out-String))) @args
+  & ([scriptblock]::Create((irm https://raw.githubusercontent.com/Goku67HoodWars/tcg-set-credits/main/tcg-set-credits.ps1))) @args
 }
 ```
 
