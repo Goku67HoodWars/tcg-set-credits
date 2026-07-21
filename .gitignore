@@ -1,0 +1,7 @@
+# local run artifacts / editor junk
+*.bak
+*.tmp
+sandbox*/
+pre-edit-backup-*/
+.vs/
+.vscode/
