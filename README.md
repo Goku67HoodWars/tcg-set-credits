@@ -18,25 +18,9 @@ edits each RuneScape account profile **independently** (your other accounts'
 collections are never touched) and copies your originals to a timestamped folder
 before making any change.
 
-## Usage
+## Run without cloning
 
 **Close RuneLite completely first** — otherwise it overwrites the edit on logout.
-
-```powershell
-# interactive – lists your accounts and asks for the amount
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tcg-set-credits.ps1
-
-# non-interactive
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tcg-set-credits.ps1 -Credits 5692500 -Yes
-
-# only one account (substring of the profile id, e.g. A1b2C3d4)
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tcg-set-credits.ps1 -Credits 5000000 -Account A1b2C3d4 -Yes
-```
-
-A Standard pack costs 2,500 credits, so `credits = packs × 2500`
-(e.g. a maxed 2,277 total level as "one pack per level" = `5692500`).
-
-## Run without cloning
 
 Fetch it straight from GitHub and run it from memory — nothing saved to disk:
 
@@ -61,6 +45,24 @@ function Set-TcgCredits {
 ```
 
 Then run `Set-TcgCredits` (or `Set-TcgCredits -Credits 5692500 -Yes`).
+
+## Usage
+
+Running a local copy instead (after cloning or downloading the file). **Close RuneLite first.**
+
+```powershell
+# interactive – lists your accounts and asks for the amount
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tcg-set-credits.ps1
+
+# non-interactive
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tcg-set-credits.ps1 -Credits 5692500 -Yes
+
+# only one account (substring of the profile id, e.g. A1b2C3d4)
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tcg-set-credits.ps1 -Credits 5000000 -Account A1b2C3d4 -Yes
+```
+
+A Standard pack costs 2,500 credits, so `credits = packs × 2500`
+(e.g. a maxed 2,277 total level as "one pack per level" = `5692500`).
 
 ## Notes / limits
 
